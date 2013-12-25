@@ -30,35 +30,35 @@ import Network.Wai.Parse
 import Data.Either (partitionEithers)
 import qualified Data.Text.IO as DTIO (readFile)
 
--- creates a response with an error message and the
+-- | creates a response with an error message and the
 -- status set to 500.
 error500 :: String -> HandlerM ()
 error500 msg = do text msg
                   setStatus status500
                   return ()
 
--- the base ResponseState used when execState is called
+-- | the base ResponseState used when execState is called
 defaultRS :: ResponseState
 defaultRS = RS "" [] status200
 
--- creates a WAI Response using a ResponseState
+-- | creates a WAI Response using a ResponseState
 renderResponse :: ResponseState -> Response
 renderResponse (RS b h s) = responseLBS s h (LBS.pack b)
 
--- shorthand for unpeeling the HandlerState from the monad
+-- | shorthand for unpeeling the HandlerState from the monad
 -- if an exception occurs, return an error response with the message
 runHandlerM :: HandlerM () -> Params -> Request -> IO HandlerState
 runHandlerM rm ps req = MS.execStateT (runErrorT (runHM (rm `catchError` error500))) 
                                      (HS defaultRS ps req)
                 
 
--- run a route's handler on a request
+-- | run a route's handler on a request
 runHandler :: Route -> Params -> Request -> IO ResponseState
 runHandler r ps req = do 
   hs <- runHandlerM (handler r) ps req
   return $ resp hs
 
--- The router is a piece of Middleware, which is just a 
+-- | The router is a piece of Middleware, which is just a 
 -- function (Application -> Application). Middleware is defined by WAI.
 -- The router is 'chained' together with another Application 
 -- (here called innerApp); the router tries to route a request 
@@ -71,7 +71,7 @@ router rs innerApp req = do
     Nothing     -> innerApp req
     Just rstate -> return $ renderResponse rstate
 
--- does the actual routing by matching an incoming request's HTTP
+-- | Does the actual routing by matching an incoming request's HTTP
 -- method and path with one of the routes. if a match is found,
 -- the route's handler is run, resulting in a ResponseState.
 -- returns Nothing if no matches exist.
@@ -107,7 +107,7 @@ addPostParams ps r req = do
 splitPath :: String -> [DT.Text]
 splitPath s = DT.split (=='/') (DT.pack s)
 
--- remove the empties
+-- | Removes the empties.
 trim :: [DT.Text] -> [DT.Text]
 trim = filter (not . DT.null) 
 
@@ -120,7 +120,7 @@ putRegexParams strs = aux 1 strs  where
     aux n (s:ss) = ("r" ++ (show n), s) : (aux (n + 1 ) ss)  
 
 
--- matches the path info specified in a route with the path info 
+-- | Matches the path info specified in a route with the path info 
 -- in the request
 matchesPath :: [DT.Text] -> [DT.Text] -> Maybe Params
 matchesPath ((r1:rs1)) ((r2:rs2)) = 
@@ -144,56 +144,57 @@ defaultApp :: Application
 defaultApp req = return $ renderResponse
                           (RS "404 : Page not Found." [] status404)
 
--- helper method for adding a GET route
+-- | Helper method for adding a GET route.
 get :: Path -> Handler -> ColtraneApp ()
 get p h = addroute $ Route GET p h
 
----- helper method for adding a POST route
+-- | Helper method for adding a POST route.
 post :: Path -> Handler -> ColtraneApp ()
 post p h = addroute $ Route POST p h
 
----- helper method for adding a PUT route
+-- | Helper method for adding a PUT route.
 put :: Path -> Handler -> ColtraneApp ()
 put p h = addroute $ Route PUT p h
 
--- helper method for adding a DELETE route
+-- | Helper method for adding a DELETE route.
 delete :: Path -> Handler -> ColtraneApp ()
 delete p h = addroute $ Route DELETE p h
 
--- add a route to the app's state
+-- | Add a route to the app's state.
 addroute :: Route -> ColtraneApp ()
 addroute r = do rs <- MS.get
                 MS.put (r:rs)
                 return ()
 
--- add multiple routes to the app's state
+-- | Add multiple routes to the app's state.
 addroutes :: [Route] -> ColtraneApp ()
 addroutes rs = do 
 	st <- MS.get
 	MS.put (rs ++ st)
 	return ()
 
--- sets body and content type for HTML
+-- | Sets body and content type for HTML.
 html :: ResponseBody -> HandlerM ()
 html = setBody ctHTML
 
--- sets body and content type for Text
+-- | Sets body and content type for Text.
 text :: ResponseBody -> HandlerM ()
 text = setBody ctText
 
--- sets body and content type for JSON
+-- | Sets body and content type for JSON.
 json :: ResponseBody -> HandlerM ()
 json = setBody ctJSON
 
--- sets body and content type for File
+-- | Sets body and content type for File.
 file :: ResponseBody -> HandlerM ()
 file = setBody ctFile
 
+-- | Reads a file in as a String.
 htmlFile :: FilePath -> IO String
 htmlFile fp = do h <- (DTIO.readFile fp)
                  return (DT.unpack h)
 
--- set the current ResponseState's body, and add the
+-- | Set the current ResponseState's body, and add the
 -- corresponding content type header
 setBody :: ContentType -> ResponseBody -> HandlerM ()
 setBody ct rb = do setHeader hContentType ct
@@ -201,13 +202,13 @@ setBody ct rb = do setHeader hContentType ct
                    MS.put $ (HS (RS rb hs s) pm r)
                    return ()
 
--- set the current ResponseState's status
+-- | Set the current ResponseState's status
 setStatus :: Status -> HandlerM ()
 setStatus s = do (HS (RS b h _) pm r) <- MS.get
                  MS.put $ (HS (RS b h s) pm r)
                  return ()
 
--- lookup a header and set its value to the input string.
+-- | Lookup a header and set its value to the input string.
 -- if the header does not exist, adds a new header.
 setHeader :: HeaderName -> BS.ByteString -> HandlerM ()
 setHeader hname hval = do 
@@ -222,7 +223,7 @@ replace :: Eq a => a -> b -> [(a,b)] -> [(a,b)]
 replace a b ((a', b'):ps) | a == a' = (a, b):ps
                           | otherwise = (a, b) : replace a b ps
 
--- add a header to the current ResponseState's headers
+-- | Add a header to the current ResponseState's headers
 -- HeaderName defined in Network.HTTP.Types.Header
 addHeader :: HeaderName -> BS.ByteString -> HandlerM ()
 addHeader hname hval = do (HS (RS b hs s) pm r) <- MS.get
@@ -237,7 +238,7 @@ field key = do HS _ _ req <- MS.get
                 _               -> throwError $ msg
   where msg = "Error: Param " ++ key ++ " not found."
 
--- retrieve a parameter parsed from the URL. if not found,
+-- | Retrieve a parameter parsed from the URL. if not found,
 -- search through the query fields.
 param :: String -> HandlerM String
 param key = do HS _ ps req <- MS.get
@@ -247,12 +248,12 @@ param key = do HS _ ps req <- MS.get
                                return val'   
   where msg = "Error: Param " ++ key ++ " not found."
 
--- retrieve the current request object
+-- | Retrieve the current request object
 request :: HandlerM Request
 request = do HS _ _ req <- MS.get
              return req
 
--- run the framework with the given server on the given port and application
+-- | Run the framework with the given server on the given port and application
 coltrane :: Server -> Port -> ColtraneApp () -> IO ()
 coltrane s port capp = do
   putStrLn "== Coltrane has taken the stage .."
