@@ -66,8 +66,7 @@ ctFile = BS.pack "application/octet-stream"
 type ResponseBody = String
 
 -- a path is either a string Literal or a Regular Expression
-data Path = Literal | RegExp Regex
-type Literal = String
+data Path = Literal String | RegExp Regex
 
 -- key value pairs of URL parameters
 type ParamKey = String
