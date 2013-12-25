@@ -15,7 +15,8 @@ import Coltrane
 import ColtraneTypes
 
 main = coltrane Warp 8000 $ do
-         get (Literal "/hello") $ html "Hello World!"
+         get (Literal "/hello") $ do
+              html "Hello World!"
 ```
 **... and all that jazz.**
 ```
