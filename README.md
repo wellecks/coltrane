@@ -9,7 +9,13 @@ Coltrane is a minimal web framework for Haskell, inspired by
 Ruby's [Sinatra](https://github.com/sinatra/sinatra/) framework. Coltrane lets you write simple
 web applications in just a few lines of Haskell code. 
 
-**Use Coltrane for concise webapps...**
+**Install Coltrane using cabal...**
+```bash
+$ cabal install coltrane
+```
+
+**...then use Coltrane to write concise webapps...**
+
 ```haskell
 import Coltrane
 import ColtraneTypes
