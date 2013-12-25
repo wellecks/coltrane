@@ -28,17 +28,17 @@ Coltrane was built as a final project for CIS552: Advanced Programming,
 and is now open-sourced!
 
 ##Routes
-Routes consist of a method, a path, and a handler. Paths can be:
+A route consists of a method, a path, and a handler. A path can be:
 - string literals
 ```haskell
 get (Literal "/album") $ do
-    text "A Love Supreme"
+         text "A Love Supreme"
 ```
 
 - regular expressions
 ```haskell
 get (RegExp mkRegex "^(/[0-9]+)") $ do
-    text "I like numbers."
+         text "I like numbers."
 ```
 
 ##URL variables
