@@ -20,9 +20,11 @@ $ cabal install coltrane
 import Coltrane
 import ColtraneTypes
 
-main = coltrane Warp 8000 $ do
-         get (Literal "/hello") $ do
-              html "Hello World!"
+app :: ColtraneApp ()
+app = get (Literal "/hello") $ do
+           html "Hello World!"
+    
+main = coltrane Warp 8000 app
 ```
 **... and all that jazz.**
 ```
