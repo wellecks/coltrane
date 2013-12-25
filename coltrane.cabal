@@ -4,13 +4,13 @@
 name:                coltrane
 version:             0.1.0.0
 synopsis:            A jazzy, minimal web framework for Haskell, inspired by Sinatra.
--- description:         
+description:         Coltrane is a minimal web framework for Haskell, inspired by Ruby's Sinatra framework. Coltrane lets you write simple web applications in just a few lines of Haskell code.
 homepage:            https://github.com/wellecks/coltrane
 license:             BSD3
 license-file:        LICENSE
 author:              Sean Welleck
--- maintainer:          
--- copyright:           
+maintainer:          Sean Welleck
+copyright:           (c) 2013 Sean Welleck
 category:            Web
 build-type:          Simple
 cabal-version:       >=1.8
@@ -23,3 +23,7 @@ Extra-source-files:
 library
   exposed-modules:     Coltrane, ColtraneTypes
   build-depends:       base ==4.6.*, bytestring ==0.10.*, text ==0.11.*, regex-compat ==0.95.*, mtl ==2.1.*, http-types ==0.8.*, wai ==2.0.*, warp ==2.0.*, wai-extra ==2.0.*, HUnit ==1.2.*, HTTP ==4000.2.*
+
+source-repository head
+    type:     git
+    location: https://github.com/wellecks/coltrane.git
