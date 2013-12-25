@@ -122,7 +122,7 @@ Add an HTTP header with `addHeader`:
 ```haskell
 get (Literal "/addcookie") $ do
     addHeader hCookie "ascension"
-    html "Headers up"
+    html "Headers up."
 ```
 
 Alternatively, `setHeader` modifies an existing header's value, or adds a new header if it doesn't exist.
@@ -130,69 +130,57 @@ Alternatively, `setHeader` modifies an existing header's value, or adds a new he
 ----
 ##Files
 ####ColtraneTypes.hs
-This file contains the types used in the library. Reading through these
-types first will help to understand the structure of the framework.
+This file contains the types used in the library.
 
 Notable types include: 
-1. ColtraneApp: a monad that stores the application's state. Specifically,
+
+1. `ColtraneApp`: a monad that stores the application's state. Specifically,
    it stores the user-specified routes that are then used by the router.
 
-2. Route: a method, path, and Handler. 
+2. `Route`: a method, path, and Handler. 
 
-2. HandlerM: A monad for processing a request and building a response. 
+2. `HandlerM`: A monad for processing a request and building a response. 
    Stores information that is used and modified within a route handler, and
    is able to throw and catch errors.
    Specifically, contains the request, the parameters, and the response state.
    Intuitively, a Handler consists of 'building' a response state that is then
    turned into a response and sent to the server.
 
-4. HandlerState: describes the state held by the HandlerM.
+4. `HandlerState`: describes the state held by the HandlerM.
 
 ####Coltrane.hs
-This file contains the core functionality of the framework. It contains:
-1. Which functions are visible to the user. 
+This file contains the core functionality of the framework. It contains functions for:
 
-2. The router, which matches a registered route with an incoming request,
+- The router, which matches a registered route with an incoming request,
    and runs the corresponding handler.
 
-   Functions: router, route
-
-3. The matcher, which is used by the router to perform the actual route
+- The matcher, which is used by the router to perform the actual route
    matching. Matches literal strings, regular expressions, and
    parses url variables.
 
-   Functions: matchesPath
-
-4. Routing functions. Associates a Path and a Handler to create a route,
+- Routing helpers. Associates a Path and a Handler to create a route,
    which is added to the ColtraneApp state.
 
-   Functions: addroute, addroutes, get, post, put, delete
+- Response modifiers. Changes the response state within a handler. Specifically, changes the headers, the body, and the status.
 
-5. Response modifiers. Changes the response state within a handler. Specifically, changes the headers, the body, and the status.
-
-   Functions: setBody, setStatus, setHeader, addHeader.
-
-6. Request retrieval. Retrieve parameters and the request object.
+- Request retrieval. Retrieve parameters and the request object.
    
-   Functions: param, request.
 
 ####ColtraneTests.hs
 Contains all of the tests, as well as examples of how to use the framework.
 In order to run the tests, the server must be running, so do the following:
 
-Install Dependencies:
+**Install**:
 ```bash
-  $ cabal install warp==2.0.0.1
-  $ cabal install wai-extra==2.0.0.1
-  $ cabal install wai==2.0.0
+  $ cabal install coltrane
 ```
-GHCI one (running the server)
+**GHCI one (running the server)**
 ```bash
   $ :load ColtraneTests
   $ main
 ```
 
-GHCI two (running the tests)
+**GHCI two (running the tests)**
 ```bash
   $ :load ColtraneTests
   $ runTests
@@ -210,14 +198,11 @@ it's an example of how easy and concise it is to build a web app using the frame
 
 To run in ghci:
 
-**Install Dependencies**
+**Install**
 ```bash
-$ cabal install warp==2.0.0.1
-$ cabal install wai-extra==2.0.0.1
-$ cabal install wai==2.0.0
-$ cabal install blaze-html==0.6.1.1
+$ cabal install coltrane
 ```
-**Run It**
+**Run**
 ```
 $ :load website.hs. 
 $ main
@@ -245,7 +230,7 @@ parameters from a Request body.
 in web-related libraries, such as StdMethod, and HeaderName. We also use 
 this library to generate requests and responses for testing.
 
-**blaze-html** (** only used by the sample website.hs **): An HTML combinator
+**blaze-html** (** only used by the sample website.hs as a demonstration **): An HTML combinator
 library that allows you to quickly write HTML within Haskell code.
 ```
 cabal install blaze-html
