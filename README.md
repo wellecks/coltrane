@@ -1,12 +1,12 @@
-Coltrane
-=========
-#####A Minimal Web Framework for Haskell
----------
+#Coltrane
 
-Sean Welleck | Yuanfeng Peng
+####A Minimal Web Framework for Haskell
+
+
+**Sean Welleck | Yuanfeng Peng**
 
 Coltrane is a minimal web framework for Haskell, inspired by
-Ruby's Sinatra framework. Coltrane lets you write simple
+Ruby's [Sinatra](https://github.com/sinatra/sinatra/) framework. Coltrane lets you write simple
 web applications in just a few lines of Haskell code. 
 
 **Use Coltrane for concise webapps...**
@@ -15,7 +15,8 @@ import Coltrane
 import ColtraneTypes
 
 main = coltrane Warp 8000 $ do
-         get (Literal "/hello") $ html "Hello World!"
+         get (Literal "/hello") $ do
+              html "Hello World!"
 ```
 **... and all that jazz.**
 ```
@@ -28,20 +29,20 @@ Coltrane was built as a final project for CIS552: Advanced Programming,
 and is now open-sourced!
 
 ##Routes
-Routes consist of a method, a path, and a handler. Paths can be:
-- string literals
+A route consists of a method, a path, and a handler. A path can be:
+- string literal
 ```haskell
 get (Literal "/album") $ do
-    text "A Love Supreme"
+         text "A Love Supreme"
 ```
 
-- regular expressions
+- regular expression
 ```haskell
 get (RegExp mkRegex "^(/[0-9]+)") $ do
-    text "I like numbers."
+         text "I like numbers."
 ```
 
-##URL variables
+##Path variables
 You can create variables in your paths, which can be accessed
 using the `param` function:
 ```haskell
