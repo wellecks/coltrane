@@ -1,9 +1,9 @@
-Coltrane
-=========
-#####A Minimal Web Framework for Haskell
----------
+#Coltrane
 
-Sean Welleck | Yuanfeng Peng
+####A Minimal Web Framework for Haskell
+
+
+**Sean Welleck | Yuanfeng Peng**
 
 Coltrane is a minimal web framework for Haskell, inspired by
 Ruby's Sinatra framework. Coltrane lets you write simple
