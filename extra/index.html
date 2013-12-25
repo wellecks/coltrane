@@ -1,0 +1,212 @@
+
+<html>
+<head>
+  <!-- ViewPort controls the display on Apple iPhone. -->  
+  <META NAME="viewport" CONTENT="width=device-width"/>
+  <!-- Make sure this page is never cached. -->
+  <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">  
+  <META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+  <META HTTP-EQUIV="expires" content="FRI, 13 APR 1999 01:00:00 GMT"> 
+  <META NAME="description" CONTENT="XpressConnect is a network wizard which provides
+                                    quick, automated, cross-platform, self-service onboarding for Bring-Your-Own-Device (BYOD or BYOT) devices using secure connections, including
+                                    wired & wireless 802.1X (PEAP, TTLS, TLS), WPA-Enterprise, WPA2-Enterprise, WPA-PSK, WPA2-PSK, and much more.  Proven on millions of devices worldwide, it is clearly the smart choice for BYOD.  
+                                    Visit www.cloudpath.net for more information. ">
+
+  <title>XpressConnect by Cloudpath Networks</title>
+
+  <link type="text/css" rel="stylesheet" href="css/main.css">
+
+
+  <!-- START OF ERROR HANDLER -->
+  <SCRIPT language=JavaScript>
+  function errorHandler(message, url, line)
+  {
+    return true;
+  }
+  // install the global error-handler
+  window.onerror = errorHandler;
+  </SCRIPT>
+  <NOSCRIPT>
+    <!-- No need to register javascript error handler. -->
+  </NOSCRIPT>
+  <!-- END OF ERROR HANDLER -->
+
+
+  <script src="scripts/main.js" type="text/javascript"></script> 
+</head>
+
+<body name='main' onload='doOnLoad();'>
+
+<div id='cpx-wait-shadow' class='cpx-content-wait-shadow cpx-oauthSelection-wait-shadow'></div>
+<div id='cpx-wait' class='cpx-content-wait cpx-oauthSelection-wait'>
+  <div class='cpx-content-wait-image cpx-oauthSelection-wait-image'>
+    <img src='images/loading.gif'/>
+  </div>
+  <div class='cpx-content-wait-title cpx-oauthSelection-wait-title'>
+    Please Wait...
+  </div>
+</div>
+
+<table id='background' width='100%' border='0' height='100%'>
+<tr><td height='20'></td></tr>
+<tr valign='middle'>
+  <td id='height-control' height='350' valign='middle' width='100%' align='center'>
+    <table width='80%' height='100%'>
+    <tr><td></td><td class='tagline'><a href='http://www.cloudpath.net?c=2&byod'>BYOD Powered by Cloudpath Networks</a></td></tr>
+    <tr>
+      <td></td>
+      <td align='center' height='100%' width='100%'>
+        <table id='main-table'>
+
+        <tr valign='bottom'> 
+          <td id='frame-curve-top'><img height='20px' width='16px' src="images/CurveUlImage.gif" alt="University of Pennsylvania uses XpressConnect by Cloudpath Networks to automatically onboard BYOD devices for WPA2-Enterprise secure WiFi."/></td>
+          <td>&nbsp;</td>
+          <td id='frame-curve-top'><img height='20px' width='16px' src="images/CurveUrImage.gif" alt="Background curve top"/></td>
+        </tr>
+
+        <tr valign='top'> 
+          <td height='100%' id='frame-curve-side'><img width='16px' src='images/CurveSideImage.gif' height='100%' alt="Background curve side" /></td>
+            <td id='content-cell'>
+
+            <!-- START OF CONTENT AREA -->
+            <table border=0 id='content-table'>
+            <tr>
+              <td id='topbar'>
+                <table id='topbar-table'>
+          	    <tr>
+          	      <td>
+                    <table>
+                      <tr>
+                        <td id='topbar-image'><img src='images/shield-color.gif' alt="onboarding banner image" /></td>
+          	            <td id='topbar-caption'><table>
+      <tr>
+        <td id='topbar-caption-top'>Welcome to the</td>
+      </tr>
+      <tr>
+        <td id='topbar-caption-bottom'>University of Pennsylvania Network</td>
+      </tr>
+    </table></td>
+                      </tr>
+		        </table>				  
+	            </td>
+		    </tr>
+                </table>
+              </td>
+            </tr>
+            <tr><td id='content-line-top'></td></tr>
+
+            <!-- START OF Content Area -->
+            <tr>
+              <td id='title'>
+		    This wizard will configure your computer for secure network access.
+		  </td>
+		</tr>
+          
+		<tr>
+		  <td>
+		    <table width='100%'>
+		    <tr>
+			<td>
+                    <!-- START OF custom page content. -->
+			  <!-- 
+XpressConnect by Cloudpath Networks 
+XpressConnect is an automated wizard which ensures
+secure networks are simple to access with BYOD devices.  
+Visit us at http://www.cloudpath.net 
+-->
+ 
+<table width='100%'>
+<tr><td id='content-spacing'></td></tr>
+<tr><td id='content-spacing'></td></tr>
+<tr>
+  <td>
+    <table border='0'>
+    <tr>
+      <td id='page1-info-image' valign='center' align='center' style='width: 50px;'>
+        <img width='24' src='images/InfoImage.gif' alt="information"/>
+      </td>
+      <td id='line-info'>
+        To ensure your security, AirPennNet utilizes a secure authentication mechanism known as 802.1X.  This security mechanism protects your PennKey user name and password.  In a wireless environment, it also protects your data with network encryption.  To utilize this secure network, your network connection requires specific settings.  This wizard will ensure that your machine is properly configured. <br><br>XpressConnect will attempt to load automatically using a Java Applet or ActiveX.  If you prefer, you may <a href='page4_download.html'>load XpressConnect manually</a>.<br><br>During the configuration process Information Systems and Computing (ISC) will collect certain data regarding the device that you are using to connect to AirPennNet.  For more information please read our <a href="eula.html#privacy">privacy statement</a>.
+      </td>
+    </tr>
+    </table>
+  </td>
+</tr>
+<tr><td id='content-spacing'><td></td></tr>
+<tr><td id='content-spacing'></td></tr>
+
+
+<script>
+if (navigator.userAgent.indexOf("Firefox/2.0") >= 0 && navigator.userAgent.indexOf("Windows NT 6.0") >= 0) {
+  minVersion = '1,4,2'
+  Java = PluginDetect.isMinVersion('Java', minVersion);
+  if (Java == 1 || Java == 0) {
+     document.write("<tr>");
+     document.write("<td id='line-get-started'><font color='red'><b>WARNING:</b> Conflicts exist between Vista, Firefox 2.0 and Java pre-installed by some computer manufacturers.  If Firefox freezes after clicking 'Start', your Java Runtime Environment is incompatible with Firefox.  To use XpressConnect, go directly to the <a href='page4_download.html'>manual download page</a> or access this site with Internet Explorer.  To correct the Java issue, uninstall the Java Runtime Environment and install a new version from <a href='http://www.java.com/en/download/manual.jsp'>http://www.java.com/en/download/manual.jsp</a>.<br/><br/></font></td>");
+     document.write("</tr>");
+  }
+}
+</script>
+
+<tr>
+  <td id='line-get-started'>To get started, simply accept the Policy on Acceptable Use of Electronic Resources and click 'Start >'.<br/></td>
+</tr>
+
+<tr><td style='height: 10px;'></td></tr>
+<tr><td id='content-line-bottom'></td></tr>
+<tr><td id='content-spacing'></td></tr>
+<tr><td id='content-spacing'></td></tr>
+<tr>
+  <td>
+    <table width="100%">
+    <tr>
+      <td width='90%' style='text-align: right;' nowrap id='line-eula'>
+           <span id='eula-box'>
+             <input alt='EULA' id='eula' type=checkbox onclick='checkEula();'/>&nbsp;I accept the terms of the <a target='_blank' href='eula.html'>Policy on Acceptable Use of Electronic Resources</a>.
+           </span>
+        <br/>
+      </td>
+      <td width='10%' style='padding-left: 10px; padding-right: 20px;' align='right' nowrap>
+        <a onmouseover='testEula();' href='page4_download.html' id="button-large" style='margin-right: 20px;'>Start ></a>
+      </td>
+    </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<script> checkEula();</script>
+
+
+		        <!-- END OF custom page content. -->
+              	</td>
+		    </tr>
+		    </table>
+		 </td>
+	    </tr>
+          
+          <tr height=100%><td></td></tr>
+          </table>
+        <!-- END OF CONTENT AREA -->
+        </td>
+        <td height='100%' id='frame-curve-side'><img width='16px' src='images/CurveSideImage.gif' height='100%' alt="Background curve side image"/></td>
+      </tr>
+
+      <tr height='1%'>
+        <td height='1%' id='frame-curve-bottom'><img height='20px' width='16px' src="images/CurveLlImage.gif" alt="Background curve lower image"/></td>
+	<td>&nbsp;</td>
+        <td height='1%' id='frame-curve-bottom'><img height='20px' width='16px' src="images/CurveLrImage.gif" alt="Background curve lower image" /></td>
+      </tr>
+      </table>
+    </td>
+    <td></td>
+  </tr>
+  </table>
+<tr><td></td></tr>
+</table>
+
+<script>
+	doEndOfBody();
+</script>
+
+</body>
+</html>
