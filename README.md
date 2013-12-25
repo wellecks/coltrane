@@ -29,19 +29,19 @@ and is now open-sourced!
 
 ##Routes
 A route consists of a method, a path, and a handler. A path can be:
-- string literals
+- string literal
 ```haskell
 get (Literal "/album") $ do
          text "A Love Supreme"
 ```
 
-- regular expressions
+- regular expression
 ```haskell
 get (RegExp mkRegex "^(/[0-9]+)") $ do
          text "I like numbers."
 ```
 
-##URL variables
+##Path variables
 You can create variables in your paths, which can be accessed
 using the `param` function:
 ```haskell
